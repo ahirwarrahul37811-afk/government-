@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Government Services</title>
+<style>
+  :root{
+    --primary:#0b63b6;
+    --accent:#073a8a;
+    --bg:#f6f8fb;
+    --card:#ffffff;
+    --ink:#1f2937;
+    --muted:#6b7280;
+    --ring: rgba(11,99,182,.25);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+  }
+
+  /* Header / Navbar */
+  .topbar{
+    position:sticky; top:0; z-index:10;
+    backdrop-filter:saturate(1.2) blur(6px);
+    background:linear-gradient(90deg,var(--primary),var(--accent));
+    color:#fff;
+    box-shadow:0 6px 18px rgba(11,99,182,.18);
+  }
+  .topbar-inner{
+    max-width:1100px; margin:0 auto; padding:10px 16px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff;
+  }
+  .brand svg{width:34px; height:34px}
+  .brand span{font-weight:700; letter-spacing:.2px}
+  nav a{
+    color:#fff; text-decoration:none; font-weight:600; padding:8px 10px; border-radius:10px;
+    display:inline-block;
+  }
+  nav a:hover{background:rgba(255,255,255,.15)}
+  .tagline{font-size:12px; opacity:.9; margin:0 16px 12px}
+
+  /* Layout */
+  .container{max-width:1100px; margin:16px auto; padding:0 16px}
+  .cards{
+    display:grid; gap:16px;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    margin:18px 0 28px;
+  }
+  .card{
+    background:var(--card); border-radius:14px; padding:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+    transition:transform .25s ease, box-shadow .25s ease;
+    border:1px solid #eef2f7;
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .card:hover{ transform:translateY(-6px); box-shadow:0 14px 28px rgba(0,0,0,.12); }
+  .card h3{ color:var(--primary); margin:0; font-size:18px}
+  .card p{ color:var(--muted); margin:0; font-size:14px}
+  .card .actions{margin-top:auto; display:flex; gap:8px; flex-wrap:wrap}
+  .btn{
+    text-decoration:none; font-weight:700; font-size:14px; border-radius:10px; padding:8px 12px; display:inline-block;
+    border:1px solid #d7e3f6; color:var(--primary); background:#fff;
+  }
+  .btn:hover{ border-color:#c3d7f6; outline:3px solid var(--ring) }
+  .btn.primary{ background:var(--primary); color:#fff; border-color:transparent }
+  .btn.primary:hover{ background:var(--accent) }
+
+  /* Sections */
+  section{background:var(--card); border-radius:14px; padding:18px; box-shadow:0 8px 20px rgba(0,0,0,.06); margin:18px 0}
+  section h2{color:var(--primary); margin:0 0 8px}
+  section p{margin:.25rem 0}
+
+  /* CSS-only Modal via :target */
+  .modal{
+    position:fixed; inset:0; display:none; place-items:center; padding:16px;
+    background:rgba(0,0,0,.6);
+  }
+  .modal:target{ display:grid; }
+  .modal-card{
+    background:#fff; color:var(--ink); border-radius:16px; max-width:520px; width:min(92vw,520px);
+    padding:20px; box-shadow:0 18px 40px rgba(0,0,0,.35); border:1px solid #e8eef8;
+    animation:pop .25s ease;
+  }
+  @keyframes pop{ from{transform:scale(.96); opacity:0} to{transform:scale(1); opacity:1} }
+  .modal-card h3{margin:0 0 6px; color:var(--primary)}
+  .modal-actions{ display:flex; justify-content:flex-end; gap:10px; margin-top:14px }
+  .close{ text-decoration:none; padding:8px 12px; border-radius:10px; background:var(--primary); color:#fff }
+
+  /* Footer */
+  footer{ text-align:center; color:var(--muted); font-size:13px; padding:20px }
+
+  /* Print */
+  @media print{
+    .topbar, .btn, .modal{ display:none !important }
+    body{ background:#fff }
+    .card{ box-shadow:none; border:1px solid #ddd }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#home" aria-label="Home">
+      <!-- Simple inline logo -->
+      <svg viewBox="0 0 48 48" role="img" aria-hidden="true">
+        <defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#dbeafe"/></linearGradient></defs>
+        <rect x="2" y="6" width="44" height="36" rx="10" fill="url(#g)"/>
+        <path d="M10 24h28M10 31h18" stroke="#0b63b6" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="16" cy="16" r="3" fill="#0b63b6"/>
+      </svg>
+      <span>Government Services Portal</span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+</header>
+
+<main id="home" class="container">
+  <div class="cards">
+
+    <!-- Aadhaar -->
+    <article class="card">
+      <h3>Aadhaar Card</h3>
+      <p>आधार कार्ड बनवाने की प्रक्रिया और आवश्यक दस्तावेज़।</p>
+      <div class="actions">
+        <a class="btn primary" href="Aadhar.html">Open Page</a>
+        <a class="btn" href="Aadhar.html"</ aria-label="Preview Aadhaar">Preview</a>
+      </div>
+    </article>
+
+    <!-- PAN -->
+    <article class="card">
+      <h3>PAN Card</h3>
+      <p>पैन कार्ड आवेदन, विवरण और प्रक्रिया।</p>
+      <div class="actions">
+        <a class="btn primary" href="pan.html">Open Page</a>
+        <a class="btn" href="#m-pan">Preview</a>
+      </div>
+    </article>
+
+    <!-- Passport -->
+    <article class="card">
+      <h3>Passport</h3>
+      <p>पासपोर्ट आवेदन प्रक्रिया और दस्तावेज़।</p>
+      <div class="actions">
+        <a class="btn primary" href="passport.html">Open Page</a>
+        <a class="btn" href="#m-passport">Preview</a>
+      </div>
+    </article>
+
+    <!-- Voter -->
+    <article class="card">
+      <h3>Voter ID</h3>
+      <p>मतदाता पहचान पत्र जानकारी और आवेदन।</p>
+      <div class="actions">
+        <a class="btn primary" href="voter.html">Open Page</a>
+        <a class="btn" href="#m-voter">Preview</a>
+      </div>
+    </article>
+
+    <!-- PM Kisan -->
+    <article class="card">
+      <h3>PM Kisan</h3>
+      <p>किसानों के लिए वित्तीय सहायता योजना।</p>
+      <div class="actions">
+        <a class="btn primary" href="pmkisan.html">Open Page</a>
+        <a class="btn" href="#m-pmkisan">Preview</a>
+      </div>
+    </article>
+
+    <!-- PM Jan Dhan -->
+    <article class="card">
+      <h3>PM Jan Dhan</h3>
+      <p>जन धन खाता योजना और लाभ।</p>
+      <div class="actions">
+        <a class="btn primary" href="pmjandhan.html">Open Page</a>
+        <a class="btn" href="#m-pmjd">Preview</a>
+      </div>
+    </article>
+
+    <!-- DigiLocker -->
+    <article class="card">
+      <h3>DigiLocker</h3>
+      <p>डिजिटल डॉक्युमेंट स्टोरेज और वेरिफ़िकेशन।</p>
+      <div class="actions">
+        <a class="btn primary" href="digilocker.html">Open Page</a>
+        <a class="btn" href="#m-digilocker">Preview</a>
+      </div>
+    </article>
+
+    <!-- Ayushman -->
+    <article class="card">
+      <h3>Ayushman Card</h3>
+      <p>राष्ट्रीय स्वास्थ्य सुरक्षा योजना और लाभ।</p>
+      <div class="actions">
+        <a class="btn primary" href="ayushman.html">Open Page</a>
+        <a class="btn" href="#m-ayushman">Preview</a>
+      </div>
+    </article>
+
+    <!-- Driving Licence -->
+    <article class="card">
+      <h3>Driving Licence</h3>
+      <p>ड्राइविंग लाइसेंस के प्रकार और आवेदन प्रक्रिया।</p>
+      <div class="actions">
+        <a class="btn primary" href="driving.html">Open Page</a>
+        <a class="btn" href="#m-driving">Preview</a>
+      </div>
+    </article>
+
+  </div>
+
+  <section id="about" aria-labelledby="about-title">
+    <h2 id="about-title">About</h2>
+    <p>यह पोर्टल विभिन्न भारतीय सरकारी पहचान पत्र और योजनाओं की संक्षिप्त, साफ़ और मोबाइल-फ्रेंडली जानकारी प्रदान करता है। सभी बाहरी लिंक उनके आधिकारिक पोर्टल्स की ओर जाते हैं।</p>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">Contact</h2>
+    <p>सुझाव या सुधार के लिए ईमेल करें: <em>support@example.com</em> (डेमो)।</p>
+  </section>
+</main>
+
+<footer>
+  © 2025 | Government Services Portal — जानकारी मात्र के लिए।
+</footer>
+
+<!-- CSS-only modals (one per card) -->
+<div class="modal" id="m-aadhaar" aria-labelledby="t-aadhaar" role="dialog">
+  <div class="modal-card">
+    <h3 id="t-aadhaar">Aadhaar Card (Preview)</h3>
+    <p>आधार कार्ड बनवाने की प्रक्रिया, दस्तावेज़ और अपडेट — पूरा विवरण देखने के लिए पेज खोलें।</p>
+    <div class="modal-actions">
+      <a class="btn primary" href="aadhaar.html">Open Page</a>
+      <a class="close" href="#">Close</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-pan" role="dialog">
+  <div class="modal-card">
+    <h3>PAN Card (Preview)</h3>
+    <p>पैन कार्ड आवेदन और आवश्यक दस्तावेज़ का त्वरित सार।</p>
+    <div class="modal-actions">
+      <a class="btn primary" href="pan.html">Open Page</a>
+      <a class="close" href="#">Close</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-passport" role="dialog">
+  <div class="modal-card">
+    <h3>Passport (Preview)</h3>
+    <p>पासपोर्ट के प्रकार, आवेदन स्टेप्स और दस्तावेज़।</p>
+    <div class="modal-actions">
+      <a class="btn primary" href="passport.html">Open Page</a>
+      <a class="close" href="#">Close</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-voter" role="dialog">
+  <div class="modal-card">
+    <h3>Voter ID (Preview)</h3>
+    <p>EPIC कार्ड के लिए पात्रता, फॉर्म और ट्रैकिंग।</p>
+    <div class="modal-actions">
+      <a class="btn primary" href="voter.html">Open Page</a>
+      <a class="close" href="#">Close</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-pmkisan" role="dialog">
+  <div class="modal-card">
+    <h3>PM Kisan (Preview)</h3>
+    <p>₹6,000/वर्ष की सहायता — पंजीकरण व स्टेटस।</p>
+    <div class="modal-actions">
+      <a class="btn primary" href="pmkisan.html">Open Page</a>
+      <a class="close" href="#">Close</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-pmjd" role="dialog">
+  <div class="modal-card">
+    <h3>PM Jan Dhan (Preview)</h3>
+    <p>जीरो-बैलेंस खाता, रुपे कार्ड और लाभ।</p>
+    <div class="modal-actions">
+      <a class="btn primary" href="pmjandhan.html">Open Page</a>
+      <a class="close" href="#">Close</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-digilocker" role="dialog">
+  <div class="modal-card">
+    <h3>DigiLocker (Preview)</h3>
+    <p>डिजिटल डॉक्यूमेंट लिंक/डाउनलोड और e-sign सपोर्ट।</p>
+    <div class="modal-actions">
+      <a class="btn primary" href="digilocker.html">Open Page</a>
+      <a class="close" href="#">Close</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-ayushman" role="dialog">
+  <div class="modal-card">
+    <h3>Ayushman Card (Preview)</h3>
+    <p>₹5 लाख तक वार्षिक कवरेज — पात्रता व अस्पताल नेटवर्क।</p>
+    <div class="modal-actions">
+      <a class="btn primary" href="ayushman.html">Open Page</a>
+      <a class="close" href="#">Close</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-driving" role="dialog">
+  <div class="modal-card">
+    <h3>Driving Licence (Preview)</h3>
+    <p>Learner → Permanent → Commercial: स्टेप्स और डॉक्यूमेंट।</p>
+    <div class="modal-actions">
+      <a class="btn primary" href="driving.html">Open Page</a>
+      <a class="close" href="#">Close</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
